@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Based on
 
-[this](https://tutorialedge.net/typescript/angular/angular-socket-io-tutorial/) websocket socket.io setup tutorial
+[This](https://tutorialedge.net/typescript/angular/angular-socket-io-tutorial/) brilliant websocket socket.io setup tutorial by [elliotforbes](https://github.com/elliotforbes)
 
 ## Description
 
@@ -49,7 +49,7 @@ You can find your local IP address running
 ifconfig
 ```
 
-Than would be one of your inet addresses.
+That would be one of your inet addresses.
 
 
 ### Run the client
