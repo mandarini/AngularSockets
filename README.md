@@ -64,3 +64,12 @@ You need to specify another port than the default 4200, because the server is al
 ### Finally, send a message!
 
 Now, either click the send message button or move your phone around, and see the result in your browser!
+
+
+## Making use of experimental technology!
+
+Such as [Detecting device orientation](https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation)
+
+and [DeviceMotionEvent](https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent)
+
+and using them to maniputale a cube on our canvas!
