@@ -15,7 +15,9 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     this.chat.messages.subscribe(msg => {
       console.log('my msg',msg);
-      document.getElementById("message").innerHTML=msg.text;
+      document.getElementById("x").innerHTML=msg.text.x;
+      document.getElementById("y").innerHTML=msg.text.y;
+      document.getElementById("z").innerHTML=msg.text.z;
     })
   }
 

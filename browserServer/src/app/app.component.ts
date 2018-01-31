@@ -14,7 +14,11 @@ export class AppComponent implements OnInit{
       let x = event.accelerationIncludingGravity.x;
       let y = event.accelerationIncludingGravity.y;
       let z = event.accelerationIncludingGravity.z;
-      chat.sendMsg(x);
+      chat.sendMsg({
+        x: x,
+        y: y,
+        z: z
+      });
     }, true);
   }
 
