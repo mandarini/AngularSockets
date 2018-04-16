@@ -72,4 +72,4 @@ Such as [Detecting device orientation](https://developer.mozilla.org/en-US/docs/
 
 and [DeviceMotionEvent](https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent)
 
-and using them to maniputale a cube on our canvas!
+and using them to manipulate a cube on our canvas!
