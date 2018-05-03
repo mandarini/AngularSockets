@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatService } from './chat.service';
+import {InterfaceService } from './interface.service';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +9,12 @@ import { ChatService } from './chat.service';
 export class AppComponent implements OnInit{
   title = 'app';
 
-  constructor(private chat: ChatService){
+  constructor(private interfaceService: InterfaceService){
     window.addEventListener('devicemotion', function(event) {
       let x = event.accelerationIncludingGravity.x;
       let y = event.accelerationIncludingGravity.y;
       let z = event.accelerationIncludingGravity.z;
-      chat.sendMsg({
+      interfaceService.sendMsg({
         x: x,
         y: y,
         z: z
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit{
   }
 
   sendMessage(msg) {
-    this.chat.sendMsg("Test Message" + msg);
+    this.interfaceService.sendMsg("Test Message" + msg);
   }
 
 }

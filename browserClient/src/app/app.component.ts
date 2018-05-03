@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
-import { ChatService } from './chat.service';
+import { InterfaceService } from './interface.service';
 import * as THREE from 'three';
 
 @Component({
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
   private cube : THREE.Mesh;
 
 
-  constructor(private chat: ChatService){
+  constructor(private interfaceService: InterfaceService){
   }
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit{
 
     this.init();
 
-    this.chat.messages.subscribe(msg => {
+    this.interfaceService.messages.subscribe(msg => {
       console.log('my msg',msg);
       document.getElementById("x").innerHTML=Math.round(msg.text.x).toString();
       document.getElementById("y").innerHTML=Math.round(msg.text.y).toString();

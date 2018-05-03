@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import {ChatService} from "./chat.service";
+import {InterfaceService} from "./interface.service";
 import {WebsocketService} from "./websocket.service";
 
 
@@ -15,7 +15,7 @@ import {WebsocketService} from "./websocket.service";
     BrowserModule
   ],
   providers: [
-    ChatService,
+    InterfaceService,
     WebsocketService
   ],
   bootstrap: [AppComponent]

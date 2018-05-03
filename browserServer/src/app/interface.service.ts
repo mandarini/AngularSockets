@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { WebsocketService } from './websocket.service';
-import { Observable, Subject } from 'rxjs/Rx';
+import { Subject } from 'rxjs/Rx';
 
 @Injectable()
-export class ChatService {
+export class InterfaceService {
 
   messages: Subject<any>;
 

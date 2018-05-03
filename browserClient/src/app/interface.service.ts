@@ -3,7 +3,7 @@ import { WebsocketService } from './websocket.service';
 import { Observable, Subject } from 'rxjs/Rx';
 
 @Injectable()
-export class ChatService {
+export class InterfaceService {
 
   messages: Subject<any>;
 
