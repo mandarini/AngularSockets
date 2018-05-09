@@ -17,8 +17,21 @@ td.data {
 }
 
 
-svg {
+svg.catwalk {
   height: 180px;
   width: 1080px;
   border: 3px solid lightcoral;
+}
+
+svg.clock {
+  height: 600px;
+  width: 600px;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
 }

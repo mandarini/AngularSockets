@@ -9,6 +9,9 @@ import * as THREE from 'three';
 })
 export class AppComponent implements OnInit{
   title = 'app';
+  kitty : boolean;
+  clock : boolean;
+  three: boolean;
 
   @ViewChild('container') elementRef: ElementRef;
   private container : HTMLElement;
@@ -18,7 +21,6 @@ export class AppComponent implements OnInit{
   private renderer: THREE.WebGLRenderer;
 
   private cube : THREE.Mesh;
-
 
   constructor(private interfaceService: InterfaceService){
   }
@@ -30,6 +32,8 @@ export class AppComponent implements OnInit{
     console.log(this.container);
 
     this.init();
+    this.kitty = true;
+    this.three = false;
 
     this.interfaceService.messages.subscribe(msg => {
       // console.log('my msg',msg);
@@ -109,17 +113,37 @@ export class AppComponent implements OnInit{
   }
 
   animate(x, y, z){
-    this.cube.rotateX(x/10);
-    this.cube.rotateY(y/10);
-    this.cube.position.addScalar(z/10);
+    this.cube.rotateX(x/100);
+    this.cube.rotateY(y/100);
+    this.cube.position.addScalar(z/100);
   }
 
   move(b,g,a) {
     console.log('point');
-    let myrect = document.getElementById('cat');
-    // myrect.setAttribute("y", ((g+90)*2).toString());
-    myrect.setAttribute("x", (1080-a*3).toString());
+    if (this.kitty) {
+      document.getElementById('cat').setAttribute("x", (1080-a*3).toString());
+    }
+    if (this.clock) {
+      document.getElementById('clockhand').setAttribute("transform", `rotate(${360-a} 300 300)`);
+    }
+  }
 
+  showAnimation(elem) {
+    if (elem === 'kitty') {
+      this.kitty = true;
+      this.clock = false;
+      this.three = false;
+    }
+    if (elem === 'clock') {
+      this.kitty = false;
+      this.clock = true;
+      this.three = false;
+    }
+    if (elem === 'cube') {
+      this.kitty = false;
+      this.clock = false;
+      this.three = true;
+    }
   }
 
 }
