@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import { InterfaceService } from './interface.service';
 import * as THREE from 'three';
+import {mapNumber} from '../assets/functions/mapNumber';
 
 @Component({
   selector: 'app-root',
@@ -56,6 +57,7 @@ export class AppComponent implements OnInit{
 
       if (msg.text.type === 'light') {
         document.getElementById("light").innerHTML=Math.round(msg.text.light).toString();
+        this.darken(Math.round(msg.text.light));
       }
 
       if (msg.text.type === 'proximity') {
@@ -139,30 +141,58 @@ export class AppComponent implements OnInit{
     }
   }
 
+  darken(light) {
+    if (this.clouds) {
+      document.getElementById('cloud-1').setAttribute("transform", `translate(${light})`);
+      document.getElementById('cloud-2').setAttribute("transform", `translate(${light})`);
+      document.getElementById('cloud-3').setAttribute("transform", `translate(${light})`);
+      document.getElementById('cloud-4').setAttribute("transform", `translate(${light})`);
+      document.getElementById('cloud-5').setAttribute("transform", `translate(${light})`);
+      document.getElementById('cloud-6').setAttribute("transform", `translate(${light})`);
+      if (light <=500) {
+        let color = Math.round(mapNumber(light, 20,500, 80,200));
+        document.getElementById('sky').setAttribute("style", `fill: rgb(${color}, ${color}, ${color})`;
+      } else {
+        document.getElementById('sky').setAttribute("style", "fill: #9dceff");
+      }
+    }
+  }
+
   showAnimation(elem) {
     if (elem === 'kitty') {
       this.kitty = true;
       this.clock = false;
       this.three = false;
       this.compete = false;
+      this.clouds = false;
     }
     if (elem === 'clock') {
       this.kitty = false;
       this.clock = true;
       this.three = false;
       this.compete = false;
+      this.clouds = false;
     }
     if (elem === 'cube') {
       this.kitty = false;
       this.clock = false;
       this.three = true;
       this.compete = false;
+      this.clouds = false;
     }
     if (elem === 'compete') {
       this.kitty = false;
       this.clock = false;
       this.three = false;
       this.compete = true;
+      this.clouds = false;
+    }
+    if (elem === 'clouds') {
+      this.kitty = false;
+      this.clock = false;
+      this.three = false;
+      this.compete = false;
+      this.clouds = true;
     }
   }
 
