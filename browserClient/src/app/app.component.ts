@@ -13,6 +13,7 @@ export class AppComponent implements OnInit{
   clock : boolean;
   three: boolean;
   compete: boolean;
+  clouds: boolean;
 
   @ViewChild('container') elementRef: ElementRef;
   private container : HTMLElement;
@@ -33,7 +34,8 @@ export class AppComponent implements OnInit{
     console.log(this.container);
 
     this.init();
-    this.kitty = true;
+    this.kitty = false;
+    this.clouds = true;
     this.three = false;
 
     this.interfaceService.messages.subscribe(msg => {
