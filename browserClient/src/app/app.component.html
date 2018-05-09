@@ -1,93 +1,99 @@
-<h1>Client</h1>
+<div class="full">
+  <h1>Client</h1>
 
-<div class="received-data">
-  <table>
-    <tr>
-      <th>DeviceMotionEvent</th>
-    </tr>
-    <tr>
-      <td>X axis</td>
-      <td class="data" id="x"></td>
-    </tr>
-    <tr>
-      <td>Y axis</td>
-      <td class="data" id="y"></td>
-    </tr>
-    <tr>
-      <td>Z axis</td>
-      <td class="data" id="z"></td>
-    </tr>
-  </table>
+  <div class="received-data">
+    <table>
+      <tr>
+        <th>DeviceMotionEvent</th>
+      </tr>
+      <tr>
+        <td>X axis</td>
+        <td class="data" id="x"></td>
+      </tr>
+      <tr>
+        <td>Y axis</td>
+        <td class="data" id="y"></td>
+      </tr>
+      <tr>
+        <td>Z axis</td>
+        <td class="data" id="z"></td>
+      </tr>
+    </table>
 
-  <table>
-    <tr>
-      <th>DeviceOrientationEvent</th>
-    </tr>
-    <tr>
-      <td>Motion around the Z axis (alpha) (0 to 360)</td>
-      <td class="data" id="alpha"></td>
-    </tr>
-    <tr>
-      <td>Motion around the X axis (beta) (-180 to 180)</td>
-      <td class="data" id="beta"></td>
-    </tr>
-    <tr>
-      <td>Motion around the Y axis (gamma) (-90 to 90)</td>
-      <td class="data" id="gamma"></td>
-    </tr>
-  </table>
+    <table>
+      <tr>
+        <th>DeviceOrientationEvent</th>
+      </tr>
+      <tr>
+        <td>Motion around the Z axis (alpha) (0 to 360)</td>
+        <td class="data" id="alpha"></td>
+      </tr>
+      <tr>
+        <td>Motion around the X axis (beta) (-180 to 180)</td>
+        <td class="data" id="beta"></td>
+      </tr>
+      <tr>
+        <td>Motion around the Y axis (gamma) (-90 to 90)</td>
+        <td class="data" id="gamma"></td>
+      </tr>
+    </table>
 
-  <table>
-    <tr>
-      <th>DeviceLightEvent</th>
-    </tr>
-    <tr>
-      <td>Ambient light in <em>lux</em></td>
-      <td class="data" id="light"></td>
-    </tr>
-  </table>
+    <table>
+      <tr>
+        <th>DeviceLightEvent</th>
+      </tr>
+      <tr>
+        <td>Ambient light in <em>lux</em></td>
+        <td class="data" id="light"></td>
+      </tr>
+    </table>
 
-  <table>
-    <tr>
-      <th>DeviceProximityEvent</th>
-    </tr>
-    <tr>
-      <td>Maximum sensing distance in <em>cm</em></td>
-      <td class="data" id="prox_max"></td>
-    </tr>
-    <tr>
-      <td>Minimum sensing distance in <em>cm</em></td>
-      <td class="data" id="prox_min"></td>
-    </tr>
-    <tr>
-      <td>Current proximity in <em>cm</em></td>
-      <td class="data" id="prox"></td>
-    </tr>
-  </table>
+    <table>
+      <tr>
+        <th>DeviceProximityEvent</th>
+      </tr>
+      <tr>
+        <td>Maximum sensing distance in <em>cm</em></td>
+        <td class="data" id="prox_max"></td>
+      </tr>
+      <tr>
+        <td>Minimum sensing distance in <em>cm</em></td>
+        <td class="data" id="prox_min"></td>
+      </tr>
+      <tr>
+        <td>Current proximity in <em>cm</em></td>
+        <td class="data" id="prox"></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="playground">
+    <div class="buttons">
+    <button (click)="showAnimation('kitty')">Show Kitty</button>
+    <button (click)="showAnimation('clock')">Show Clock</button>
+    <button (click)="showAnimation('cube')">Show Cube</button>
+    <button (click)="showAnimation('compete')">Compete</button>
+    </div>
+    <div class="game" #catwalk *ngIf="kitty || compete">
+      <svg class="catwalk" id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <image y="40" id="cat" href="https://i.giphy.com/media/Z55zlzompYguc/giphy.webp" height="100" width="100"/>
+      </svg>
+    </div>
+    <h2 *ngIf="compete">Compete mode ON</h2>
+    <div class="game" #clock *ngIf="clock">
+      <svg class="clock" width="600" height="600">
+
+        <g>
+          <circle id="circle" style="stroke: #FFF; stroke-width: 12px; fill:#20B7AF" cx="300" cy="300" r="300"></circle>
+        </g>
+        <g>
+          <line id="clockhand" transform="rotate(0 300 300)" x1="300" y1="300" x2="300" y2="40"
+                style="stroke-width: 4px; stroke: #fdfdfd;">
+          </line>
+        </g>
+        <circle id="center" style="fill:#128A86; stroke: #C1EFED; stroke-width: 2px;" cx="300" cy="300" r="3"></circle>
+      </svg>
+    </div>
+    <div class="game" #container [ngClass]="{'visible': three, 'hidden': !three}"></div>
+  </div>
 </div>
-
-<button (click)="showAnimation('kitty')">Show Kitty</button>
-<button (click)="showAnimation('clock')">Show Clock</button>
-<button (click)="showAnimation('cube')">Show Cube</button>
-
-<div #catwalk *ngIf="kitty">
-  <svg class="catwalk" id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <image y="40" id="cat" href="https://i.giphy.com/media/Z55zlzompYguc/giphy.webp" height="100" width="100"/>
-  </svg>
-</div>
-
-<div #clock *ngIf="clock">
-  <svg class="clock" width="600" height="600">
-
-    <g>
-      <circle id="circle" style="stroke: #FFF; stroke-width: 12px; fill:#20B7AF" cx="300" cy="300" r="300"></circle>
-    </g>
-    <g>
-      <line id="clockhand" transform="rotate(0 300 300)" x1="300" y1="300" x2="300" y2="40" style="stroke-width: 4px; stroke: #fdfdfd;">
-      </line>
-    </g>
-    <circle id="center" style="fill:#128A86; stroke: #C1EFED; stroke-width: 2px;" cx="300" cy="300" r="3"></circle>
-  </svg>
-</div>
-
-<div #container [ngClass]="{'visible': three, 'hidden': !three}"></div>

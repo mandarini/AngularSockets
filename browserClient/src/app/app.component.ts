@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   kitty : boolean;
   clock : boolean;
   three: boolean;
+  compete: boolean;
 
   @ViewChild('container') elementRef: ElementRef;
   private container : HTMLElement;
@@ -116,6 +117,14 @@ export class AppComponent implements OnInit{
     this.cube.rotateX(x/100);
     this.cube.rotateY(y/100);
     this.cube.position.addScalar(z/100);
+    if (this.compete) {
+      let current = parseInt(document.getElementById('cat').getAttribute('x'));
+      if ((current+y>=0) && (current+y<=1080)) {
+        document.getElementById('cat').setAttribute("x", (current+y/10).toString());
+      } else {
+        document.getElementById('cat').setAttribute("x", (current).toString());
+      }
+    }
   }
 
   move(b,g,a) {
@@ -133,16 +142,25 @@ export class AppComponent implements OnInit{
       this.kitty = true;
       this.clock = false;
       this.three = false;
+      this.compete = false;
     }
     if (elem === 'clock') {
       this.kitty = false;
       this.clock = true;
       this.three = false;
+      this.compete = false;
     }
     if (elem === 'cube') {
       this.kitty = false;
       this.clock = false;
       this.three = true;
+      this.compete = false;
+    }
+    if (elem === 'compete') {
+      this.kitty = false;
+      this.clock = false;
+      this.three = false;
+      this.compete = true;
     }
   }
 
