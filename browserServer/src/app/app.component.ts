@@ -45,12 +45,10 @@ export class AppComponent implements OnInit{
     }, true);
 
     window.addEventListener('deviceproximity', function(event) {
-      console.log("value: " + event.value, "max: " + event.max, "min: " + event.min);
+      // console.log("value: " + event.value, "max: " + event.max, "min: " + event.min);
       interfaceService.sendMsg({
         type: 'proximity',
-        prox_value: event.value,
-        prox_max: event.max,
-        prox_min: event.min
+        proximity: event,
       });
     });
   }

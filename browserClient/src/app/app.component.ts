@@ -61,9 +61,9 @@ export class AppComponent implements OnInit{
       }
 
       if (msg.text.type === 'proximity') {
-        document.getElementById("prox_max").innerHTML=Math.round(msg.text.prox_max).toString();
-        document.getElementById("prox_min").innerHTML=Math.round(msg.text.prox_min).toString();
-        document.getElementById("prox").innerHTML=Math.round(msg.text.prox_value).toString();
+        document.getElementById("prox_max").innerHTML=Math.round(msg.text.proximity.max).toString();
+        document.getElementById("prox_min").innerHTML=Math.round(msg.text.proximity.min).toString();
+        document.getElementById("prox").innerHTML=Math.round(msg.text.proximity.value).toString();
       }
 
     })
@@ -151,7 +151,7 @@ export class AppComponent implements OnInit{
       document.getElementById('cloud-6').setAttribute("transform", `translate(${light})`);
       if (light <=500) {
         let color = Math.round(mapNumber(light, 20,500, 80,200));
-        document.getElementById('sky').setAttribute("style", `fill: rgb(${color}, ${color}, ${color})`;
+        document.getElementById('sky').setAttribute("style", `fill: rgb(${color}, ${color}, ${color})`);
       } else {
         document.getElementById('sky').setAttribute("style", "fill: #9dceff");
       }
