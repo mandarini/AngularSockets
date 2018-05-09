@@ -72,11 +72,12 @@
     <button (click)="showAnimation('kitty')">Show Kitty</button>
     <button (click)="showAnimation('clock')">Show Clock</button>
     <button (click)="showAnimation('cube')">Show Cube</button>
+    <button (click)="showAnimation('clouds')">Show Scenery</button>
     <button (click)="showAnimation('compete')">Compete</button>
     </div>
     <div class="game" #catwalk *ngIf="kitty || compete">
       <svg class="catwalk" id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <image y="40" id="cat" href="https://i.giphy.com/media/Z55zlzompYguc/giphy.webp" height="100" width="100"/>
+        <image x="0" y="40" id="cat" href="https://i.giphy.com/media/Z55zlzompYguc/giphy.webp" height="100" width="100"/>
       </svg>
     </div>
     <h2 *ngIf="compete">Compete mode ON</h2>
