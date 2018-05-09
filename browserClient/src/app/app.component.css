@@ -3,6 +3,10 @@
   padding: 20px;
 }
 
+.full h1 {
+  color: white;
+}
+
 .received-data {
   display: flex;
   flex-direction: row;
@@ -12,7 +16,8 @@
 }
 
 table, td {
-  font-size: 18px;
+  background-color: white;
+  font-size: 20px;
   border: 1px solid purple;
 }
 
@@ -53,12 +58,14 @@ td.data {
 }
 
 svg.catwalk {
+  background-color: white;
   height: 180px;
   width: 1080px;
   border: 3px solid lightcoral;
 }
 
 svg.clock {
+  background-color: white;
   height: 600px;
   width: 600px;
 }
