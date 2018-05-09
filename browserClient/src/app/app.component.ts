@@ -32,11 +32,31 @@ export class AppComponent implements OnInit{
     this.init();
 
     this.interfaceService.messages.subscribe(msg => {
-      console.log('my msg',msg);
-      document.getElementById("x").innerHTML=Math.round(msg.text.x).toString();
-      document.getElementById("y").innerHTML=Math.round(msg.text.y).toString();
-      document.getElementById("z").innerHTML=Math.round(msg.text.z).toString();
-      this.animate(Math.round(msg.text.x), Math.round(msg.text.y), Math.round(msg.text.z));
+      // console.log('my msg',msg);
+      if (msg.text.type === 'motion') {
+        document.getElementById("x").innerHTML=Math.round(msg.text.x).toString();
+        document.getElementById("y").innerHTML=Math.round(msg.text.y).toString();
+        document.getElementById("z").innerHTML=Math.round(msg.text.z).toString();
+        this.animate(Math.round(msg.text.x), Math.round(msg.text.y), Math.round(msg.text.z));
+      }
+
+      if (msg.text.type === 'orientation') {
+        document.getElementById("alpha").innerHTML=Math.round(msg.text.alpha).toString();
+        document.getElementById("beta").innerHTML=Math.round(msg.text.beta).toString();
+        document.getElementById("gamma").innerHTML=Math.round(msg.text.gamma).toString();
+        this.move(Math.round(msg.text.beta), Math.round(msg.text.gamma), Math.round(msg.text.alpha));
+      }
+
+      if (msg.text.type === 'light') {
+        document.getElementById("light").innerHTML=Math.round(msg.text.light).toString();
+      }
+
+      if (msg.text.type === 'proximity') {
+        document.getElementById("prox_max").innerHTML=Math.round(msg.text.prox_max).toString();
+        document.getElementById("prox_min").innerHTML=Math.round(msg.text.prox_min).toString();
+        document.getElementById("prox").innerHTML=Math.round(msg.text.prox_value).toString();
+      }
+
     })
   }
 
@@ -89,9 +109,17 @@ export class AppComponent implements OnInit{
   }
 
   animate(x, y, z){
-    this.cube.rotateX(x/100);
-    this.cube.rotateY(y/100);
-    this.cube.position.addScalar(z/100);
+    this.cube.rotateX(x/10);
+    this.cube.rotateY(y/10);
+    this.cube.position.addScalar(z/10);
+  }
+
+  move(b,g,a) {
+    console.log('point');
+    let myrect = document.getElementById('cat');
+    // myrect.setAttribute("y", ((g+90)*2).toString());
+    myrect.setAttribute("x", (1080-a*3).toString());
+
   }
 
 }

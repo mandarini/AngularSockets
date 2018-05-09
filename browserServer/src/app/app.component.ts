@@ -14,12 +14,45 @@ export class AppComponent implements OnInit{
       let x = event.accelerationIncludingGravity.x;
       let y = event.accelerationIncludingGravity.y;
       let z = event.accelerationIncludingGravity.z;
+      let rot = event.rotationRate;
       interfaceService.sendMsg({
+        type: 'motion',
         x: x,
         y: y,
-        z: z
+        z: z,
+        rot: rot
       });
     }, true);
+
+    window.addEventListener('deviceorientation', function(event) {
+      let alpha = event.alpha;
+      let beta = event.beta;
+      let gamma = event.gamma;
+      interfaceService.sendMsg({
+        type: 'orientation',
+        alpha: alpha,
+        beta: beta,
+        gamma: gamma,
+      });
+    }, true);
+
+    window.addEventListener('devicelight', function(event) {
+      console.log(event.value);
+      interfaceService.sendMsg({
+        type: 'light',
+        light: event.value
+      });
+    }, true);
+
+    window.addEventListener('deviceproximity', function(event) {
+      console.log("value: " + event.value, "max: " + event.max, "min: " + event.min);
+      interfaceService.sendMsg({
+        type: 'proximity',
+        prox_value: event.value,
+        prox_max: event.max,
+        prox_min: event.min
+      });
+    });
   }
 
   ngOnInit() {
